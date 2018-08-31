@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+  
+  node:
+    image: "node:8-alpine"
+    working_dir: /home/node/api
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - .:/home/node/api
+    ports:
+      - "3000:3000" 
+    command: sh -c "npm i --unsafe-perm && npm run dev"
+  
+  
