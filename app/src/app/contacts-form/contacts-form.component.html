@@ -1,0 +1,29 @@
+<form #form="ngForm" [formGroup]="contactForm" (submit)="addContact($event)">
+  <div class="form-group">
+    <label for="firstname">Nome*</label>
+    <input type="text" class="form-control" id="firstname" formControlName="firstName">
+    <small *ngIf="contactForm.get('firstName').errors?.required && (form.submitted || contactForm.get('firstName').touched)" class="text-danger d-block mt-2">Campo Nome é obrigatorio.</small>
+  </div>
+  <div class="form-group">
+    <label for="lastname">Sobrenome</label>
+    <input type="text" class="form-control" id="lastname" formControlName="lastName">
+  </div>
+  <div class="form-group">
+    <label for="phone">Telefone*</label>
+    <input type="text" class="form-control" id="phone" formControlName="phone">
+    <small *ngIf="contactForm.get('phone').errors?.required && (form.submitted || contactForm.get('phone').touched)" class="text-danger d-block mt-2">Campo Telefone é obrigatorio.</small>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="address">Endereço</label>
+    <input type="text" class="form-control" id="address" formControlName="address">
+  </div>
+  <div class="form-group">
+    <label for="photo">Foto</label>
+    <input type="url" class="form-control" id="photo" formControlName="photo">
+  </div>
+  <button type="submit" class="btn btn-primary">Adicionar</button>
+</form>

@@ -1,0 +1,15 @@
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+<form #form="ngForm" [formGroup]="loginForm" (submit)="login($event)">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <small *ngIf="loginForm.get('email').errors?.required && (form.submitted || loginForm.get('email').touched)" class="text-danger d-block mt-2">Campo Email é obrigatorio.</small>
+  </div>
+  <div class="form-group">
+    <label for="password">Senha</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+    <small *ngIf="loginForm.get('password').errors?.required && (form.submitted || loginForm.get('password').touched)" class="text-danger d-block mt-2">Campo Senha é obrigatorio.</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

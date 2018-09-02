@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between">
+  <div class="p-2 bd-highlight">
+    <form class="form-inline">
+      <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Buscar contato..." (keyup)="filter = $event.target.value">
+    </form>
+  </div>
+  <div class="p-2 bd-highlight">
+    <a routerLink="/new" class="btn btn-primary mb-2">Adicionar contato</a>
+  </div>
+</div>
+
+<table class="table">
+  <tbody>
+    <tr *ngFor="let contact of contacts | filterByName: filter">
+      <th scope="row">
+        <img src="{{contact.photo}}" alt="" class="img-thumbnail rounded-circle">
+      </th>
+      <td class="align-middle">{{contact.firstName}} {{ contact.lastName }}</td>
+      <td class="align-middle">{{ contact.phone }}</td>
+      <td class="align-middle">{{contact.email}}</td>
+      <td class="align-middle text-right">
+        <button class="btn btn-sm btn-primary mr-2" disabled>Editar</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteContact(contact.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
